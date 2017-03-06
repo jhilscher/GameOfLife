@@ -1,0 +1,29 @@
+<script>
+l=64,i=v=l*32,b='';
+
+for (;i--;)
+    b += ~~(Math.random()*2);
+
+setInterval(()=>{
+    g = ''; 
+
+    c.innerHTML = b.replace(/./g,(j,k) => {
+        x=0;
+        for(h=8;h--;) {
+            q = -(h & 1) | 1;
+            a = q*((h<6?l:0) + (h>1) * (h>3||-1));
+
+            x += +b[(a+k+v)%v];
+        }
+
+        g += [,,b[k],1][x] || 0;
+
+
+        return ['','\n'][+!(k%l)]+(+j? '#':'.');
+        });
+
+    b = g;    
+
+},100);
+</script>
+<pre id=c></pre>
